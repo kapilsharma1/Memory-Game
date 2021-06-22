@@ -6,7 +6,7 @@ export default function App() {
   const [successTurns, setsuccessTurns] = useState(0);
   const [turns, setTurns] = useState(0);
   const shuffle = arr => arr.sort(() => 0.5 - Math.random());
-  const pokemons = [
+  const alphabets = [
     { id: 1, name: "A" },
     { id: 2, name: "B" },
     { id: 3, name: "C" },
@@ -18,8 +18,8 @@ export default function App() {
   ];
 
 
-  console.log(openedCard)
-  const [pairOfPokemons, setpairOfPokemons] = useState(shuffle([...pokemons, ...pokemons]));
+  //console.log(openedCard)
+  const [pairOfAlphabets, setpairOfAlphabets] = useState(shuffle([...alphabets, ...alphabets]));
  
 
   function flipCard(index) {
@@ -39,9 +39,7 @@ export default function App() {
 
   useEffect(() => {
     window.addEventListener("beforeunload", alertUser);
-    // return () => {
-    //   window.removeEventListener("beforeunload", alertUser);
-    // };
+
   }, []);
 
 
@@ -49,8 +47,8 @@ export default function App() {
   useEffect(() => {
     //if (openedCard < 2) return;
 
-    const firstMatched = pairOfPokemons[openedCard[0]];
-    const secondMatched = pairOfPokemons[openedCard[1]];
+    const firstMatched = pairOfAlphabets[openedCard[0]];
+    const secondMatched = pairOfAlphabets[openedCard[1]];
 
     if (secondMatched  &&firstMatched.id === secondMatched.id ) {
       setMatched([...matched, firstMatched.id]);
@@ -75,24 +73,24 @@ export default function App() {
 
       <div className="cards">
       
-        {pairOfPokemons.map((pokemon, index) => {
+        {pairOfAlphabets.map((alphabet, index) => {
 
 
           let isFlipped = false;
 
           if (openedCard.includes(index)) isFlipped = true;
-          if (matched.includes(pokemon.id)) isFlipped = true;
+          if (matched.includes(alphabet.id)) isFlipped = true;
           return (
             <div
-              className={`pokemon-card ${isFlipped ? "flipped" : ""} `}
+              className={`alphabet-card ${isFlipped ? "flipped" : ""} `}
               key={index}
               onClick={() => flipCard(index)}
             >
               <div className="inner">
                 <div className="front">
                   <img
-                    src={process.env.PUBLIC_URL + `/${pokemon.id}.png`}
-                    alt="pokemon-name"
+                    src={process.env.PUBLIC_URL + `/${alphabet.id}.png`}
+                    alt="alphabet-name"
                     width="100"
                   />
                 </div>
