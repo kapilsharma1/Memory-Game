@@ -18,7 +18,7 @@ export default function App() {
   ];
 
 
-  //console.log(openedCard)
+  console.log(openedCard)
   const [pairOfAlphabets, setpairOfAlphabets] = useState(shuffle([...alphabets, ...alphabets]));
  
 
@@ -50,7 +50,7 @@ export default function App() {
     const firstMatched = pairOfAlphabets[openedCard[0]];
     const secondMatched = pairOfAlphabets[openedCard[1]];
 
-    if (secondMatched  &&firstMatched.id === secondMatched.id ) {
+    if ((secondMatched && (firstMatched.index!=secondMatched.index)) &&firstMatched.id === secondMatched.id ) {
       setMatched([...matched, firstMatched.id]);
       setsuccessTurns(successTurns+1);
     }
